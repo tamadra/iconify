@@ -1,52 +1,230 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
+<title> Iconify /r/puzzleanddragons </title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-  <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Iconify : A companion tool for the subreddit community reddit.com/r/puzzleanddragons" />
+<link href="css/d_1.css" rel="stylesheet">
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
+<style>
+#mobile-nav {
+    float: right;
+    margin-right: 20px;
+    display: block;
+}
+.menu-nav {
+    background:url(img/menu-mobile.png) 0 0 no-repeat;
+    width: 16px;
+    height: 16px;
+    display: block;
+    margin: 22px 0 0 0;
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
 
-    <title>Iconify</title>
-  </head>
+    -webkit-transition: -webkit-transform 250ms ease-out 0s;
+    -moz-transition: -moz-transform 250ms ease-out 0s;
+    -o-transition: -o-transform 250ms ease-out 0s;
+    transition: transform 250ms ease-out 0s;
+}
 
-  <body>
+.menu-nav.open {
+    background-position: 0 -16px;
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/tamadra/iconify">View on GitHub</a>
+    -webkit-transform: rotate(-180deg);
+    -moz-transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg);
+    -o-transform: rotate(-180deg);
+    transform: rotate(-180deg);
 
-          <h1 id="project_title">Iconify</h1>
-          <h2 id="project_tagline">A companion tool for the subreddit community reddit.com/r/puzzleanddragons</h2>
+    -webkit-transition: -webkit-transform 250ms ease-out 0s;
+    -moz-transition: -moz-transform 250ms ease-out 0s;
+    -o-transition: -o-transform 250ms ease-out 0s;
+    transition: transform 250ms ease-out 0s;
+}
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/tamadra/iconify/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/tamadra/iconify/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
+#navigation-mobile {
+    display: none;
+    text-align: right;
+    width: 100%;
+    background: #26292E;
+    border-bottom: 1px solid #2F3238;
+    position: relative;
+    z-index: 9999;
+}
+
+#navigation-mobile li {
+    list-style: none;
+    padding: 0 20px;
+    border-top: 1px solid #2F3238;
+}
+
+#navigation-mobile li a{
+    display: block;
+    font-size: 16px;
+    padding: 12px 0;
+}
+
+#select2 {
+    width: 300px;
+}
+.highlight {
+    font-weight: 600;
+    background-color: #fffee0;
+}
+.select2-highlighted .highlight {
+    background-color: white;
+    color:black;
+}
+#selector-box {
+    text-align: center;
+    margin: 10px 0 20px;
+}
+#content {
+    min-height: 200px;
+    padding:30px 0 0;
+}
+#share {
+    margin-top: 20px;
+    background-color: #eee;
+    clear: both;
+    width: 100%;
+    padding: 0 50px;
+    display: none;
+}
+#clear {
+    display: none;
+}
+
+#results {
+    text-align: center;
+}
+
+</style>
+</head>
+<body>
+
+<div class="header" style="width: 100%; height: 60px; background-color: #404040; color: #ddd; ">
+    <a id="mobile-nav" class="menu-nav" href="#menu-nav"></a>
+
+    <h2 style="line-height: 60px; margin: 0;">
+        <img style="position: relative; top:-3px; margin-right: 10px; margin-left: 20px; width: 40px" src="img/alien.png">
+        Iconify <span style="font-size: smaller; margin-left: 10px;">a companion tool for <a href="http://reddit.com/r/puzzleanddragons">/r/puzzleanddragons</a></span>
+    </h2>
+
+    <div id="navigation-mobile" style="display: none;">
+        <ul id="menu-nav-mobile">
+            <li><a href="/rank-up" class="external"><img src="img/icon114.png" style="width:30px; margin: -9px 0 0 0;"> Rank Up!</a></li>
+            <li><a href="/s-rank" class="external"><img src="img/trans_tamadra.png" style="width:25px; margin: -9px 2px 0 0;"> S-Rank Calculator</a></li>
+            <li><a href="/blog" class="external">Blog</a></li>
+        </ul>
+    </div>
+</div>
+
+<div id="main">
+    <div id="content" class="col-xs-12">
+
+        <div id="selector-box">
+            <div style="margin-bottom: 10px;">Add monsters one at a time:</div>
+            <input tabindex="1" type="hidden" id="select2" placeholder="Search by name">
+
+        </div>
+
+        <div id="results">
+        </div>
+        <div style="text-align: center; margin-top: 20px;" id="clear">
+            <button class="btn btn-sm btn-default">clear all</button>
+        </div>
+        <div id="share" style="width: 100%;">
+            <div class="col-xs-12" style="text-align: center; margin-top:20px;">Paste this into Comment textbox:</div>
+            <div class="col-xs-12" style="text-align: center; margin-bottom: 30px;">
+                <input id="cUrl" type="text" onclick="select()" style="margin: 0 auto; text-align: center; border-color: #1b7fcc; border-width: 1px;" class="col-xs-12" />
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
     </div>
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h1>
-<a name="iconify" class="anchor" href="#iconify"><span class="octicon octicon-link"></span></a>iconify</h1>
-
-<p>A companion tool for the subreddit community reddit.com/r/puzzleanddragons</p>
-      </section>
+    <div style="text-align: center; clear: both; margin: 10px 0;">
+        <a href="https://github.com/tamadra/skill-up/">Github Project</a> ·&nbsp;<a href="https://github.com/tamadra/skill-up/issues">Issue Tracker</a>
+        <br>
+        &copy; 2014
     </div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<link href="js/select2/select2.css" rel="stylesheet"/>
+<script src="js/select2/select2.min.js"></script>
+<script>
+var dd = [{id:4,n:"Firedragon Tyrannos"},{id:8,n:"Icedragon Plesios"},{id:12,n:"Flowerdragon Brachys"},{id:16,n:"Sundragon Pterados"},{id:20,n:"Moondragon D'spinas"},{id:57,n:"Samurai Goblin"},{id:59,n:"Marine Goblin"},{id:61,n:"Hobgoblin"},{id:62,n:"Red Ogre"},{id:64,n:"Blue Ogre"},{id:66,n:"Ogre"},{id:68,n:"Flame Fighter"},{id:70,n:"Aqua Fighter"},{id:72,n:"Earth Fighter"},{id:74,n:"White Fighter"},{id:76,n:"Black Fighter"},{id:78,n:"Flame Golem"},{id:80,n:"Ice Golem"},{id:84,n:"Machine Golem"},{id:86,n:"Dark Golem"},{id:88,n:"Naga"},{id:90,n:"Mermaid"},{id:92,n:"Dryad"},{id:94,n:"Cupid"},{id:96,n:"Succubus"},{id:98,n:"Mystic Flame Knight"},{id:100,n:"Mystic Ice Knight"},{id:102,n:"Mystic Stone Knight"},{id:103,n:"Dragon Knight"},{id:104,n:"Mystic Light Knight"},{id:105,n:"Verche"},{id:106,n:"Titan"},{id:108,n:"Mystic Dark Knight"},{id:110,n:"Vampire"},{id:111,n:"Vampire Lord"},{id:113,n:"Ifrit"},{id:115,n:"Leviathan"},{id:117,n:"Fafnir"},{id:119,n:"Divinegon"},{id:121,n:"Tiamat"},{id:122,n:"Minerva"},{id:123,n:"War Deity Minerva"},{id:124,n:"Neptune"},{id:125,n:"Sea Deity Neptune"},{id:126,n:"Ceres"},{id:127,n:"Fertility Deity Ceres"},{id:128,n:"Venus"},{id:129,n:"Love Deity Venus"},{id:130,n:"Hades"},{id:131,n:"Underlord Hades"},{id:132,n:"Kagutsuchi"},{id:133,n:"Hino Kagutsuchi"},{id:134,n:"Viper Orochi"},{id:135,n:"Demon Viper Orochi"},{id:136,n:"Susano"},{id:137,n:"Susano no Mikoto"},{id:138,n:"Amaterasu"},{id:139,n:"Amaterasu Ohkami"},{id:140,n:"Yomi"},{id:141,n:"Tsuku Yomi"},{id:142,n:"Flamedragon Muspelheim"},{id:143,n:"Ice Dragon Niflheim"},{id:144,n:"Isle Dragon Yggdrasil"},{id:145,n:"Mechadragon Valhalla"},{id:146,n:"Evil Dragon Helheim"},{id:147,n:"Keeper of Flame"},{id:148,n:"Keeper of Water"},{id:149,n:"Keeper of Forest"},{id:150,n:"Keeper of Light"},{id:151,n:"Keeper of Dark"},{id:152,n:"Dragon Seed"},{id:153,n:"Dragon Plant"},{id:154,n:"Dragon Flower"},{id:155,n:"Rubylit"},{id:156,n:"Sapphilit"},{id:157,n:"Emelit"},{id:158,n:"Topalit"},{id:159,n:"Amelit"},{id:160,n:"Mythlit"},{id:161,n:"Red Evolution Mask"},{id:162,n:"Blue Evolution Mask"},{id:163,n:"Green Evolution Mask"},{id:164,n:"Yellow Evolution Mask"},{id:165,n:"Purple Evolution Mask"},{id:166,n:"Crimson Demon Mask"},{id:167,n:"Indigo Demon Mask"},{id:168,n:"Azure Demon Mask"},{id:169,n:"Golden Demon Mask"},{id:170,n:"Violet Demon Mask"},{id:171,n:"Divine Carmine Mask"},{id:172,n:"Divine Indigo Mask"},{id:173,n:"Divine Jade Mask"},{id:174,n:"Divine Gold Mask"},{id:175,n:"Divine Onyx Mask"},{id:176,n:"Metal Dragon"},{id:177,n:"High Metal Dragon"},{id:178,n:"King Metal Dragon"},{id:179,n:"Gold Dragon"},{id:180,n:"High Gold Dragon"},{id:181,n:"King Gold Dragon"},{id:182,n:"Poring"},{id:183,n:"Marin"},{id:184,n:"Poporing"},{id:185,n:"Drops"},{id:186,n:"Ghostring"},{id:187,n:"Zeus"},{id:188,n:"Awoken Zeus"},{id:189,n:"Hera"},{id:190,n:"Awoken Hera"},{id:191,n:"Pyro Devil"},{id:193,n:"Frost Devil"},{id:195,n:"Taur Devil"},{id:197,n:"Harpie Devil"},{id:199,n:"Blood Devil"},{id:201,n:"Empress of Serpents, Echidna"},{id:202,n:"Enchantress of the Sea, Siren"},{id:203,n:"Mystical Forest Pixie, Alraune"},{id:204,n:"Messenger of God, Archangel"},{id:205,n:"Witch of the Night, Lilith"},{id:206,n:"Mars Light Carbuncle"},{id:207,n:"Mercury Light Carbuncle"},{id:208,n:"Earth Light Carbuncle"},{id:209,n:"Sunlight Carbuncle"},{id:210,n:"Moonlight Carbuncle"},{id:211,n:"Meteor Volcano Dragon"},{id:212,n:"Crystal Aurora Dragon"},{id:213,n:"Graviton Earth Dragon"},{id:214,n:"Lightning Holy Dragon"},{id:215,n:"Chaos Devil Dragon"},{id:216,n:"Red Skydragon, El Dorado"},{id:217,n:"Blue Skydragon, Nirai Kanai"},{id:218,n:"Wood Skydragon, Horai"},{id:219,n:"Holy Skydragon, Shangri-La"},{id:220,n:"Night Skydragon, Elysion"},{id:221,n:"Berserk"},{id:222,n:"Siegfried, the Blue Champion"},{id:223,n:"Highlander"},{id:224,n:"Cu Chulainn, the Green Lancer"},{id:225,n:"Valkyrie"},{id:226,n:"Great Valkyrie"},{id:227,n:"Dragon Fruit"},{id:228,n:"Mastering"},{id:229,n:"Phoenix Knight Homura"},{id:230,n:"Fenrir Knight Kamui"},{id:231,n:"Ancient Dragon Knight"},{id:232,n:"Verche, the Knight of the Sky"},{id:233,n:"Chaos Dragon Knight"},{id:234,n:"Mystic Mask"},{id:236,n:"Shiva"},{id:237,n:"Shiva, the Destroyer"},{id:238,n:"Lakshmi"},{id:239,n:"Fortune Deity Lakshmi"},{id:240,n:"Parvati"},{id:241,n:"Parvati, the Golden Goddess"},{id:242,n:"Indra"},{id:243,n:"Thunderdragon Indra"},{id:244,n:"Vritra"},{id:245,n:"Darkdragon Vritra"},{id:246,n:"Dub-rubylit"},{id:247,n:"Dub-sapphilit"},{id:248,n:"Dub-emelit"},{id:249,n:"Dub-topalit"},{id:250,n:"Dub-amelit"},{id:251,n:"Dub-mythlit"},{id:252,n:"Ruby Dragon"},{id:253,n:"High Ruby Dragon"},{id:254,n:"King Ruby Dragon"},{id:255,n:"Sapphire Dragon"},{id:256,n:"High Sapphire Dragon"},{id:257,n:"King Sapphire Dragon"},{id:258,n:"Emerald Dragon"},{id:259,n:"High Emerald Dragon"},{id:260,n:"King Emerald Dragon"},{id:261,n:"Super King Metal Dragon"},{id:262,n:"Flame Chimera"},{id:264,n:"Bubble Chimera"},{id:266,n:"Leaf Chimera"},{id:268,n:"Volt Chimera"},{id:270,n:"Mist Chimera"},{id:283,n:"Fire Mechdragon, Betelgeuse"},{id:284,n:"Ice Mechdragon, Aldebaran"},{id:285,n:"Wind Mechdragon, Canopus"},{id:286,n:"Noble Mechdragon, Regulus"},{id:287,n:"Annihilate Mechdragon, Hadar"},{id:288,n:"Drall"},{id:291,n:"Shardra"},{id:294,n:"Toytops"},{id:297,n:"Fairlio"},{id:300,n:"Pierdra"},{id:303,n:"Fire Pengdra"},{id:304,n:"Ruby Pengdra"},{id:305,n:"Water Pengdra"},{id:306,n:"Sapphire Pengdra"},{id:307,n:"Wood Pengdra"},{id:308,n:"Emerald Pengdra"},{id:309,n:"Super King Gold Dragon"},{id:310,n:"Ice Samurai Ogre"},{id:311,n:"Wood Samurai Ogre"},{id:312,n:"Blazing Ice Ogre"},{id:313,n:"Wood Ice Ogre"},{id:314,n:"Flame Armor Ogre"},{id:315,n:"Ice Armor Ogre"},{id:316,n:"Flame Mech Warrior, Jotunn"},{id:317,n:"Water Mech Warrior, Midgard"},{id:318,n:"Wood Mech Warrior, Asgard"},{id:319,n:"Machine Golem Mk.III"},{id:320,n:"Dark Golem Mk.III"},{id:321,n:"Keeper of Rainbow"},{id:322,n:"Blue Flame Ifrit"},{id:323,n:"Green Flame Ifrit"},{id:324,n:"Shining Flame Ifrit"},{id:325,n:"Dark Flame Ifrit"},{id:326,n:"Red Ice Leviathan"},{id:327,n:"Green Ice Leviathan"},{id:328,n:"Shining Ice Leviathan"},{id:329,n:"Dark Ice Leviathan"},{id:330,n:"Red Wood Fafnir"},{id:331,n:"Blue Wood Fafnir"},{id:332,n:"Shining Wood Fafnir"},{id:333,n:"Dark Wood Fafnir"},{id:334,n:"Red Shining Divinegon"},{id:335,n:"Blue Shining Divinegon"},{id:336,n:"Green Shining Divinegon"},{id:337,n:"Dark Shining Divinegon"},{id:338,n:"Blazing Dark Tiamat"},{id:339,n:"Flowing Dark Tiamat"},{id:340,n:"Wooden Dark Tiamat"},{id:341,n:"Lightning Dark Tiamat"},{id:350,n:"Formula"},{id:351,n:"Sacred Flame Dragon, Formula"},{id:352,n:"Shaitan"},{id:354,n:"Undine"},{id:356,n:"Sylph"},{id:358,n:"Genie"},{id:360,n:"Thanatos"},{id:362,n:"Odin"},{id:363,n:"Awoken Odin"},{id:364,n:"Odin, the War Deity"},{id:365,n:"Awoken Deity Odin"},{id:366,n:"Plan"},{id:367,n:"Awoken Plan"},{id:368,n:"Freyr"},{id:369,n:"Freyr, the God of Victory"},{id:370,n:"Idunn&Idunna"},{id:371,n:"Idunn&Idunna, Twin Goddesses"},{id:372,n:"Freyja"},{id:373,n:"Freyja, the Goddess of Gaia"},{id:374,n:"Thor"},{id:375,n:"Thor, the God of Lightning"},{id:376,n:"Loki"},{id:377,n:"Loki, the God of Guile"},{id:378,n:"Dino Rider"},{id:380,n:"Beast Rider"},{id:382,n:"Marine Rider"},{id:384,n:"Dragon Rider"},{id:386,n:"Gryps Rider"},{id:388,n:"War Deity, Saint Minerva"},{id:389,n:"War Deity, Dark Minerva"},{id:390,n:"Sea Deity, Heaven Neptune"},{id:391,n:"Sea Deity, Abyss Neptune"},{id:392,n:"Fertility Deity, Holy Ceres"},{id:393,n:"Fertility Deity, Evil Ceres"},{id:394,n:"Love Deity, Cosmos Venus"},{id:395,n:"Love Deity, Chaos Venus"},{id:396,n:"Underlord Arch Hades"},{id:397,n:"Underlord Inferno Hades"},{id:398,n:"Phoenix"},{id:400,n:"Kraken"},{id:402,n:"Griffin"},{id:404,n:"Unicorn"},{id:406,n:"Cerberus"},{id:408,n:"Infernodragon Muspelheim"},{id:409,n:"Glacialdragon Niflheim"},{id:410,n:"Gaiadragon Yggdrasil"},{id:411,n:"Cyberdragon Valhalla"},{id:412,n:"Viciousdragon Helheim"},{id:413,n:"Blue Flamedragon Muspelheim"},{id:414,n:"Mitsuki"},{id:416,n:"Mitsuki, the Flame Fox"},{id:417,n:"Ruka"},{id:419,n:"Ruka, the Lady of the Sea"},{id:420,n:"Kano"},{id:422,n:"Kano, the Daughter of Nature"},{id:423,n:"Fuu"},{id:425,n:"Fuu, the Dancer in the Grasses"},{id:426,n:"Kurone"},{id:428,n:"Kurone, the Feline of the Night"},{id:429,n:"Queen Metal Dragon"},{id:430,n:"Queen Gold Dragon"},{id:431,n:"Shimonita Leek"},{id:432,n:"Super Shimonita Leek"},{id:433,n:"Shimonita Konjac"},{id:434,n:"Super Shimonita Konjac"},{id:435,n:"Tsumagoi Cabbage"},{id:436,n:"Super Tsumagoi Cabbage"},{id:437,n:"Daruma"},{id:438,n:"Super Daruma"},{id:439,n:"Gunma"},{id:440,n:"Super Gunma"},{id:441,n:"Ancient Fire Dragon, Ardbeg"},{id:442,n:"Ancient Water Dragon, Bowmore"},{id:443,n:"Ancient Wood Dragon, Lagavulin"},{id:444,n:"Ancient Light Dragon, Laphroaig"},{id:445,n:"Ancient Dark Dragon, Caol-ila"},{id:475,n:"Hellfire Pyro Demon"},{id:476,n:"Hellice Frost Demon"},{id:477,n:"Hellwind Taur Demon"},{id:478,n:"Hellray Harpie Demon"},{id:479,n:"Helldark Blood Demon"},{id:480,n:"Firedragon Grand Tyrannos"},{id:481,n:"Icedragon Depth Plesios"},{id:482,n:"Flowerdragon Gaia Brachys"},{id:483,n:"Sundragon Sol Pterados"},{id:484,n:"Moondragon Lunar D'spinas"},{id:487,n:"Daredevil of Dark, Gamble Mage"},{id:488,n:"Chrono Turtle"},{id:490,n:"Horus"},{id:491,n:"Flame Deity, Falcon Horus"},{id:492,n:"Isis"},{id:493,n:"Water Deity, Holy Isis"},{id:494,n:"Bastet"},{id:495,n:"Love Deity, Feline Bastet"},{id:496,n:"Ra"},{id:497,n:"Sun Deity Ra"},{id:498,n:"Anubis"},{id:499,n:"Hell Deity, Jackal Anubis"},{id:500,n:"Princess Punt"},{id:502,n:"Dinocorn"},{id:504,n:"Baby Seal"},{id:506,n:"Jelly's Angel"},{id:507,n:"The Jelly's Angels"},{id:508,n:"Balloon Penguin"},{id:510,n:"Goggler"},{id:512,n:"Red Giant Gigas"},{id:513,n:"King Siegfried, Blue Champion"},{id:514,n:"More Cu Chulainn, the Hero"},{id:515,n:"Princess Valkyrie"},{id:516,n:"Duke Vampire Lord"},{id:517,n:"Present Egg (Fire)"},{id:518,n:"Present Egg (Water)"},{id:519,n:"Present Egg (Wood)"},{id:520,n:"Snow Globe Dragon Rouge"},{id:521,n:"Snow Globe Dragon Bleu"},{id:522,n:"Snow Globe Dragon Vert"},{id:523,n:"Red Moltdra"},{id:524,n:"Blue Moltdra"},{id:525,n:"Green Moltdra"},{id:540,n:"Fire Samurai Dragon, Shingen"},{id:541,n:"Water Samurai Dragon, Kenshin"},{id:542,n:"Wood Samurai Dragon, Masamune"},{id:543,n:"Light Samurai Dragon, Hideyoshi"},{id:544,n:"Dark Samurai Dragon, Nobunaga"},{id:545,n:"Low Fire Ninja"},{id:547,n:"Low Water Ninja"},{id:549,n:"Low Wood Ninja"},{id:551,n:"Low Light Ninja"},{id:553,n:"Low Dark Ninja"},{id:555,n:"Mochizuki Chiyome"},{id:557,n:"Hatsume no Tsubone"},{id:558,n:"Blue Wind Ninja, Hatsume"},{id:559,n:"Sarutobi Sasuke"},{id:561,n:"Fuma Kotaro"},{id:563,n:"Hattori Hanzo"},{id:565,n:"Ishikawa Goemon"},{id:566,n:"Goemon, the Thief"},{id:567,n:"Ares"},{id:568,n:"War Deity Ares"},{id:569,n:"Hermes"},{id:570,n:"Commerce Deity Hermes"},{id:571,n:"Artemis"},{id:572,n:"Hunting Deity Artemis"},{id:573,n:"Apollo"},{id:574,n:"Solar Deity Apollo"},{id:575,n:"Persephone"},{id:576,n:"Hell Queen Persephone"},{id:577,n:"Gold Moltdra"},{id:578,n:"Black Moltdra"},{id:579,n:"Will-O'-Wisp"},{id:581,n:"Kelpie"},{id:583,n:"Treant"},{id:585,n:"Pixie"},{id:587,n:"Werewolf"},{id:593,n:"Angeling"},{id:594,n:"Archangeling"},{id:595,n:"Deviling"},{id:596,n:"Hera-Is"},{id:597,n:"Awoken Hera-Is"},{id:598,n:"Hera-Ur"},{id:599,n:"Awoken Hera-Ur"},{id:600,n:"Shiny Pengdra"},{id:601,n:"Topaz Pengdra"},{id:602,n:"Dark Pengdra"},{id:603,n:"Amethyst Pengdra"},{id:617,n:"Super King Ruby Dragon"},{id:618,n:"Super King Sapphire Dragon"},{id:619,n:"Super King Emerald Dragon"},{id:620,n:"Archangel Uriel"},{id:621,n:"Fire Dominion Uriel"},{id:622,n:"Archangel Gabriel"},{id:623,n:"Water Dominion Gabriel"},{id:624,n:"Archangel Michael"},{id:625,n:"Wood Dominion Michael"},{id:626,n:"Archangel Raphael"},{id:627,n:"Light Dominion Raphael"},{id:628,n:"Archangel Lucifer"},{id:629,n:"Seraph of Dawn Lucifer"},{id:630,n:"Belial"},{id:631,n:"Flame Archdemon Belial"},{id:632,n:"Amon"},{id:633,n:"Blizzard Archdemon Amon"},{id:634,n:"Astaroth"},{id:635,n:"Wind Archdemon Astaroth"},{id:636,n:"Baal"},{id:637,n:"Lightning Archdemon Baal"},{id:638,n:"Fallen Angel Lucifer"},{id:639,n:"Dark Archdemon Lucifer"},{id:640,n:"Archangel Metatron"},{id:641,n:"Voice of God, Metatron"},{id:642,n:"Dark Angel Metatron"},{id:643,n:"Hand of the Dark God, Metatron"},{id:644,n:"Beelzebub"},{id:645,n:"Archdemon Beelzebub"},{id:646,n:"Satan"},{id:647,n:"Satan, King of the Underworld"},{id:648,n:"Athena"},{id:649,n:"Awoken Athena"},{id:650,n:"Zeus-Dios"},{id:651,n:"Awoken Zeus-Dios"},{id:652,n:"Freyr, the Blazing Swordsman"},{id:653,n:"Idunn&Idunna, the Twin Archers"},{id:654,n:"Freyja, the Fertility Goddess"},{id:655,n:"Thor, the Wielder of Mjolnir"},{id:656,n:"Loki, the Finisher"},{id:657,n:"Holy Thunderdragon Indra"},{id:658,n:"Evil Darkdragon Vritra"},{id:659,n:"Puzzdroid"},{id:660,n:"Droidragon"},{id:661,n:"Chaos Blizzard Dragon"},{id:681,n:"Manekimewdra"},{id:682,n:"Heavy Metal Dragon"},{id:683,n:"Dragon Lord Zaerog"},{id:684,n:"King Flamie"},{id:685,n:"King Bubblie"},{id:686,n:"King Woodsie"},{id:687,n:"King Shynee"},{id:688,n:"King Baddie"},{id:692,n:"Earth-Rending Emperor, Siegfried"},{id:693,n:"Noble Wolf King Hero, Cu Chulainn"},{id:694,n:"Warrior Rose, Graceful Valkyrie"},{id:708,n:"The Fifth Angel - Assault Mode"},{id:710,n:"The Sixth Angel - Assault Mode"},{id:712,n:"The Tenth Angel - Assault Mode"},{id:714,n:"The Fourth Angel - Assault Mode"},{id:718,n:"Hamahime"},{id:719,n:"Green Skydragon Elysium"},{id:720,n:"CoC Barbarian"},{id:722,n:"CoC Archer"},{id:724,n:"CoC Goblin"},{id:726,n:"CoC Healer"},{id:728,n:"CoC Dragon"},{id:730,n:"CoC P.E.K.K.A"},{id:733,n:"Blue Chocobo&Chocobo Knight"},{id:734,n:"Green Chocobo&Chocobo Knight"},{id:735,n:"Moogle, Carbuncle & Chocobo"},{id:737,n:"Scarlet Stone Dragon, Vermilionyt"},{id:738,n:"Blue Stone Dragon, Mythril"},{id:739,n:"Green Stone Dragon, Adamant"},{id:740,n:"Rainbow Stone Dragon, Orichalcum"},{id:741,n:"Purple Stone Dragon, Damascus"},{id:744,n:"Ancient Draggie Knight"},{id:745,n:"Incarnation of Suzaku, Leilan"},{id:746,n:"Heavenly Guide Suzaku, Leilan"},{id:747,n:"Incarnation of Seiryuu, Karin"},{id:748,n:"Guardian of Life Seiryuu, Karin"},{id:749,n:"Incarnation of Genbu, Meimei"},{id:750,n:"Tortoise Mountain Genbu, Meimei"},{id:751,n:"Incarnation of Kirin, Sakuya"},{id:752,n:"Kirin of the Aurora, Sakuya"},{id:753,n:"Incarnation of Byakko, Haku"},{id:754,n:"Soul Guardian Byakko, Haku"},{id:755,n:"Red Dragon God, Hino Kagutsuchi"},{id:756,n:"Fire Serpent God, Hino Kagutsuchi"},{id:757,n:"Scorched Claw Dragon, Flare Drall"},{id:758,n:"Drilling Shark Dragon, Megalodran"},{id:759,n:"Horned Fort Dragon, Fortoytops"},{id:760,n:"Sacred Dragon Beast, Angelion"},{id:761,n:"Jester Dragon, Drawn Joker"},{id:762,n:"OCTOPUS"},{id:763,n:"OCTOPUS Ver.2"},{id:764,n:"CRAB"},{id:765,n:"CRAB Ver.2"},{id:766,n:"SQUID"},{id:767,n:"SQUID Ver.2"},{id:768,n:"GC CRAB"},{id:769,n:"GC CRAB Ver.2"},{id:770,n:"UFO"},{id:771,n:"UFO Ver.2"},{id:772,n:"Omega Red Skydragon, El Dorado"},{id:773,n:"Omega Blue Skydragon, Nirai Kanai"},{id:774,n:"Omega Wood Skydragon, Horai"},{id:775,n:"Omega Holy Skydragon, Shangri-La"},{id:776,n:"Omega Night Skydragon, Elysion"},{id:777,n:"Great Tengu"},{id:778,n:"Twisted Mountain God, Grand Tengu"},{id:779,n:"Kodama"},{id:780,n:"Incarnation of Kouryu, Fagan"},{id:781,n:"Kouryu the Star Emperor, Fagan"},{id:782,n:"Mystic Megalith Dragon, Baalbek"},{id:783,n:"Mystic Mech Dragon, Antikythera"},{id:784,n:"Mystic Painting Dragon, Nazca"},{id:785,n:"Mystic Crystal Dragon, CrystalSkull"},{id:786,n:"Mystic Astro Dragon, Nebradisk"},{id:788,n:"Beast of the Labyrinth, Minotaur"},{id:790,n:"Stone Gaze Demon Bird, Cockatrice"},{id:792,n:"Hominal Beast, Centaur"},{id:794,n:"Thunder Giant, Cyclops"},{id:796,n:"Charming Temptress, Wicked Lady"},{id:797,n:"TAMADRA"},{id:798,n:"Samba Ruby Dragon"},{id:799,n:"Ame no Uzume"},{id:800,n:"Goddess of the Art, Ame no Uzume"},{id:801,n:"Umisachi&Yamasachi"},{id:802,n:"Gods of Hunt, Umisachi&Yamasachi"},{id:803,n:"Kushinadahime"},{id:804,n:"Goddess of Rice Fields, Kushinada"},{id:805,n:"Izanagi"},{id:806,n:"Ancestor of the Gods, Izanagi"},{id:807,n:"Okuninushi"},{id:808,n:"Founder of Nations, Okuninushi"},{id:809,n:"Takeminakata"},{id:810,n:"War God of Metal, Takeminakata"},{id:811,n:"Empress God, Izanami"},{id:812,n:"Empress of Creation, Izanami"},{id:813,n:"Yomi God, Izanami"},{id:814,n:"Yomi Mistress, Izanami"},{id:816,n:"Don Domovoi"},{id:818,n:"Bronzed Grendel"},{id:820,n:"Absolute Zero Hrungnir"},{id:822,n:"Burning Phoenix Knight, Homura"},{id:823,n:"Torrential Fenrir Knight, Kamui"},{id:824,n:"Ancient Dragon Knight, Zeal"},{id:825,n:"Godly Knight of the Sky, Verche"},{id:826,n:"Chaos Dragon Knight, Voice"},{id:827,n:"Shugen Demon, Shouki"},{id:829,n:"Shugen Demon, Jyaki"},{id:831,n:"Top Droidragon"},{id:832,n:"Kozukura"},{id:833,n:"Fukuragi"},{id:834,n:"Amberjack"},{id:835,n:"King of Toyama Bay, Amberjack"},{id:836,n:"Firefly Squid"},{id:837,n:"Mystery of Toyama Bay, Firefly Squid"},{id:838,n:"Velvet Shrimp"},{id:839,n:"Jewel of Toyama Bay, Velvet Shrimp"},{id:840,n:"Amitan"},{id:841,n:"Amitaka & Kanon & Cecil"},{id:888,n:"Feline Deity of Harmony, Bastet"},{id:889,n:"War Deity of Fury, Ares"},{id:890,n:"Commerce Deity of Dreams, Hermes"},{id:891,n:"Hunt God of the Holy Bow, Artemis"},{id:892,n:"Solar God of Heaven's Bow, Apollo"},{id:893,n:"Queen of Condemnation, Persephone"},{id:894,n:"Dark Liege, Vampire Duke"},{id:895,n:"Arcane Monarch, Vampire Duke"},{id:897,n:"Flame Chaser"},{id:899,n:"Aqua Chaser"},{id:901,n:"Wind Chaser"},{id:903,n:"Lightning Chaser"},{id:905,n:"Phantom Chaser"},{id:911,n:"Red Dragon Caller, Sonia"},{id:912,n:"Extant Red Dragon Caller, Sonia"},{id:913,n:"Jade Dragon Caller, Sonia"},{id:914,n:"Eternal Jade Dragon Caller, Sonia"},{id:915,n:"Angelit"},{id:916,n:"Devilit"},{id:917,n:"Awoken Zeus Olympios"},{id:918,n:"Awoken Zeus Stratios"},{id:919,n:"Elemental of Harsh Flame, Shaitan"},{id:920,n:"Elemental of Kind Waters, Undine"},{id:921,n:"Elemental of Levity, Sylph"},{id:922,n:"Elemental of Gold Glimmer, Genie"},{id:923,n:"Elemental of True Death, Thanatos"},{id:924,n:"BAO Joker"},{id:925,n:"BAO Joker+A. Blossom"},{id:927,n:"BAO Catwoman+C. Claw"},{id:929,n:"BAO Robin+E. Stick"},{id:931,n:"BAO Batman+S. Gloves Act"},{id:933,n:"BAO Batman+Remote Claw"},{id:949,n:"AB Red Bird Red"},{id:951,n:"AB Bluebird Blues"},{id:953,n:"AB Green Bird Hal"},{id:955,n:"AB Yellow Bird Chuck"},{id:957,n:"AB White Bird Matilda"},{id:959,n:"AB Black Bird Bomb"},{id:961,n:"AB Dashing Wingman"},{id:972,n:"Lovely Maiden, Princess Valkyrie"},{id:973,n:"Azure Maiden, Graceful Valkyrie"},{id:974,n:"Red Pirate Dragon, Bartholomew"},{id:975,n:"Blue Pirate Dragon, Awilda"},{id:976,n:"Green Pirate Dragon, Captain Kidd"},{id:977,n:"Gold Pirate Dragon, Anne & Mary"},{id:978,n:"Black Pirate Dragon, Blackbeard"},{id:982,n:"Blazing Maiden, Princess Valkyrie"},{id:983,n:"Black Blaze, Graceful Valkyrie"},{id:984,n:"Gigas the Great"},{id:985,n:"Divine Queen Hera"},{id:986,n:"Serpent God Demon, Viper Orochi"},{id:987,n:"Warded Storm God, Susano no Mikoto"},{id:988,n:"Dancing Light Amaterasu Ohkami"},{id:989,n:"War Deity of the Night, Tsukuyomi"},{id:990,n:"Nocturne Chanter Tsukuyomi"},{id:994,n:"Inferno Deity Falcon, Horus"},{id:995,n:"Blazing Deity Falcon, Horus"},{id:996,n:"Blue Moon Sea Deity, Isis"},{id:997,n:"Shining Sea Deity, Isis"},{id:998,n:"Dark Sun Deity, Ra"},{id:999,n:"Pure Light Sun Deity, Ra"},{id:1000,n:"Abyssal Hell Deity Jackal, Anubis"},{id:1001,n:"Deathly Hell Deity Jackal, Anubis"},{id:1002,n:"Baby TAMADRA"},{id:1003,n:"Present Egg (Light)"},{id:1004,n:"Present Egg (Dark)"},{id:1005,n:"Snow Globe Dragon Blanc"},{id:1006,n:"Snow Globe Dragon Noir"},{id:1062,n:"Corpse Wyrm, Dragon Zombie"},{id:1064,n:"Devil Fish"},{id:1065,n:"Yamato Takeru"},{id:1066,n:"Martial God-Emperor, Yamato Takeru"},{id:1067,n:"Andromeda"},{id:1068,n:"Starsea Goddess, Andromeda"},{id:1069,n:"Perseus"},{id:1070,n:"Vanquishing Deity, Perseus"},{id:1071,n:"Sun Wukong"},{id:1072,n:"Golden Monkey King, Sun Wukong"},{id:1073,n:"Pandora"},{id:1074,n:"Goddess of the Bleak Night, Pandora"},{id:1076,n:"Red Sky Fruit, Strawberry Dragon"},{id:1078,n:"Blue Sky Fruit, Berry Dragon"},{id:1080,n:"Green Sky Fruit, Melon Dragon"},{id:1082,n:"Yellow Sky Fruit, Lemon Dragon"},{id:1084,n:"Purple Sky Fruit, Grape Dragon"},{id:1085,n:"Red Dragon Fruit"},{id:1086,n:"Blue Dragon Fruit"},{id:1087,n:"Green Dragon Fruit"},{id:1088,n:"Blue Dragon Caller, Sonia"},{id:1089,n:"Endless Blue Dragon Caller, Sonia"},{id:1090,n:"Hurricane Volcano Dragon"},{id:1091,n:"Blast Aurora Dragon"},{id:1092,n:"Generate Earth Dragon"},{id:1093,n:"Tornado Holy Dragon"},{id:1094,n:"Cyclone Devil Dragon"},{id:1095,n:"Water Twin Star Leviathan"},{id:1096,n:"Wind Twin Star Fafnir"},{id:1097,n:"Heracles"},{id:1098,n:"Champion of Olympus, Heracles"},{id:1099,n:"Crimson Lotus Mistress, Echidna"},{id:1100,n:"Sea God's Songstress, Siren"},{id:1101,n:"World Tree Sprite, Alraune"},{id:1102,n:"Creation Tree Spirit, Alraune"},{id:1103,n:"Heavenly Herald, Archangel"},{id:1104,n:"Sanctuary Guardian, Archangel"},{id:1105,n:"Moonbeam Fang Witch, Lilith"},{id:1106,n:"Pitch Black Night Princess, Lilith"},{id:1107,n:"Phantom God, Odin"},{id:1108,n:"Awoken Phantom God, Odin"},{id:1109,n:"Flame Twin Star Ifrit"},{id:1110,n:"Light Twin Star Divinegon"},{id:1111,n:"Dark Twin Star Tiamat"},{id:1112,n:"Karmic Destroyer, Shiva"},{id:1113,n:"Demolishing Creator, Shiva"},{id:1114,n:"Heavenly Fortune Goddess, Lakshmi"},{id:1115,n:"Purple Lotus Chanter, Lakshmi"},{id:1116,n:"White Hot Dancing Goddess, Parvati"},{id:1117,n:"Jade Oracle, Parvati"},{id:1118,n:"Sandalphon"},{id:1119,n:"Awoken Sandalphon"},{id:1137,n:"Kitty FlaBaddie"},{id:1139,n:"Kitty BubFlamie"},{id:1141,n:"Kitty WoodBubblie"},{id:1143,n:"Kitty ShyWoodie"},{id:1145,n:"Kitty BadShynee"},{id:1147,n:"Apple Springs Kittyn & Mimmyna"},{id:1149,n:"Hello Kitty World Joker"},{id:1151,n:"Kitty & Tyrra"},{id:1153,n:"Keroppi & Plessie"},{id:1155,n:"Melody & Brachy"},{id:1157,n:"Pierdra Badtz-Maru"},{id:1159,n:"Lilith Kuromi"},{id:1161,n:"Angel Cinnamon"},{id:1163,n:"TAMADRApurin"},{id:1165,n:"Princess Valkitty"},{id:1166,n:"Red Flower Dragon, Barbados"},{id:1167,n:"Blue Flower Dragon, Starling"},{id:1168,n:"Green Flower Dragon, Casablanca"},{id:1169,n:"Orange Flower Dragon, Helianthus"},{id:1170,n:"Purple Flower Dragon, Orchid"},{id:1171,n:"Puchilip"},{id:1172,n:"Puchirose"},{id:1173,n:"Puchilium"},{id:1174,n:"Puchianthus"},{id:1175,n:"Puchiorchid"},{id:1176,n:"Keeper of Gold"},{id:1179,n:"Fire Sprite, Parrot"},{id:1181,n:"Water Sprite, Sharulu"},{id:1183,n:"Wood Sprite, Lily"},{id:1185,n:"Light Sprite, Sunrich"},{id:1187,n:"Dark Sprite, Cattleya"},{id:1188,n:"Hera-Beorc"},{id:1189,n:"Awoken Hera-Beorc"},{id:1190,n:"Ancient Draggie Knight, Zeal"},{id:1191,n:"Blazing Shrine Maiden, Chiyome"},{id:1192,n:"Blue Wind Ninja Princess, Hatsume"},{id:1193,n:"Gusting Prodigy, Sasuke"},{id:1194,n:"Thunder Horn Master, Fuma Kotaro"},{id:1195,n:"Moonlit Shadow, Hattori Hanzo"},{id:1205,n:"The Ninth Angel - Assault Mode"},{id:1206,n:"5 Mechdragon Fusion, God Canopus"},{id:1207,n:"5 Mechdragon Combo, Demon Hadar"},{id:1208,n:"Dragon Emperor, Buster Siegfried"},{id:1209,n:"Wolf Hero, Ignis Cu Chulainn"},{id:1210,n:"The Eternal Bird, Phoenix"},{id:1211,n:"Devil of the Depths, Kraken"},{id:1212,n:"Royal Hunting Beast, Griffin"},{id:1213,n:"Saintly Maidens' Protector, Unicorn"},{id:1214,n:"Underworld Guard Dog, Cerberus"},{id:1215,n:"Maleficent Dragon Lord Zaerog"},{id:1216,n:"Rebel Seraph Lucifer"},{id:1217,n:"Keeper of the Sacred Texts, Metatron"},{id:1218,n:"Kirin of the Sacred Gleam, Sakuya"},{id:1219,n:"Himi Udon"},{id:1220,n:"Toyama Bay Tradition, Himi Udon"},{id:1222,n:"Gaia"},{id:1223,n:"Awoken Gaia"},{id:1224,n:"Twin Dragon, Wangren"},{id:1225,n:"Flamewing Twin Dragon King, Wangren"},{id:1226,n:"Twin Dragon, Beyzul"},{id:1227,n:"Icewing Twin Dragon King, Beyzul"},{id:1230,n:"Awoken Phantom God, Odin TAMADRA"},{id:1231,n:"Cao Cao"},{id:1232,n:"Conquering Martial Deity, Cao Cao"},{id:1233,n:"Sun Quan"},{id:1234,n:"Courageous Divine General, Sun Quan"},{id:1235,n:"Liu Bei"},{id:1236,n:"Moral Commanding Deity, Liu Bei"},{id:1237,n:"Da Qiao & Xiao Qiao"},{id:1238,n:"Divine Flowers, Da Qiao & Xiao Qiao"},{id:1239,n:"Lu Bu"},{id:1240,n:"Divine Flying General, Lu Bu"},{id:1241,n:"Bearded Deity, Guan Yu"},{id:1242,n:"Steadfast Bearded Deity, Guan Yu"},{id:1243,n:"Loyal Deity, Guan Yu"},{id:1244,n:"Valiant & Loyal Deity, Guan Yu"},{id:1245,n:"Shining Monk, Xuanzang"},{id:1246,n:"Gleaming-Eyed Dragon Monk, Xuanzang"},{id:1247,n:"Shadow Monk, Xuanzang"},{id:1248,n:"Dark-Eyed Dragon Monk, Xuanzang"},{id:1249,n:"Hera-Sowilo"},{id:1250,n:"Awoken Hera-Sowilo"},{id:1253,n:"Blazing Dragonfire Angel, Uriel"},{id:1255,n:"Unyielding Archangel, Michael"},{id:1257,n:"Surging Demon Lord, Belial"},{id:1258,n:"Chivalrous Demon Lord, Amon"},{id:1262,n:"Divine Flower Suzaku, Leilan"},{id:1263,n:"Divine Harbinger Suzaku, Leilan"},{id:1264,n:"Life Protector Seiryuu, Karin"},{id:1265,n:"Ethereal Guardian Seiryuu, Karin"},{id:1268,n:"焔月輪の白虎・ハク (Dark/Red Byakko, Haku)"},{id:1269,n:"退魔爪の白虎・ハク (Dark/Dark Byakko, Haku)"},{id:1270,n:"Burning Maiden, Princess Valkyrie"},{id:1271,n:"Phoenix Blossom, Graceful Valkyrie"},{id:1272,n:"Red Mech General, Elder Jotunn"},{id:1273,n:"Blue Mech General, Mar Midgard"},{id:1274,n:"Green Mech General, Viz Asgard"},{id:1294,n:"Ancient Blue Sacred Mask"},{id:1295,n:"Ancient Green Sacred Mask"},{id:1296,n:"Iwato's Dancing Goddess, Amenouzume"},{id:1301,n:"Dino Rider, Wild Drake"},{id:1302,n:"Beast Rider, Wiz Merlin"},{id:1303,n:"Marine Rider, Bard Robin"},{id:1304,n:"Dragon Rider, King Arthur"},{id:1305,n:"Gryps Rider, Vector Finn"}];
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Iconify maintained by <a href="https://github.com/tamadra">tamadra</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
+function escapeRegExp(string) { return string.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1"); }
+function replaceAll(string, find) { return string.replace(new RegExp("("+escapeRegExp(find)+")", 'gi'), "<span class='highlight'>$1</span>"); }
+function format(item) { return item.n; }
+function formatResult(item, c, query) {
+    if (query.term.length>1) { return replaceAll(item.n, query.term); }
+    return item.n;
+}
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]").toLowerCase();
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search.toLowerCase());
+    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+function isNumber(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
+}
 
-    
 
-  </body>
+$(document).ready(function() {
+    $("#select2").select2({
+        data:{ results: dd, text: 'n' },
+        formatSelection: format,
+        formatResult: formatResult,
+        width: 'resolve'
+    });
+
+    var showR = function(m) {
+        if (!m) { return; }
+        var ii = '<img src="img/m/'+ m.id +'.png">';
+        $('#results').append(ii);
+        var comment = $('#cUrl').val();
+        comment += "[](/"+ m.id+' "'+ m.n+'")';
+        $('#cUrl').val(comment);
+    }
+
+    $('#clear button').on("click", function(e) {
+        $('#clear').hide(); $('#share').hide();
+        $('#results').text("");
+        $('#cUrl').val("");
+        $('#select2').select2('open');
+    });
+    $("#select2").on("change", function(e) {
+        $('#clear').show(); $('#share').show();
+        showR(e.added);
+        $("#select2").select2("val","");
+        $(':focus').blur();
+    });
+
+    $('#mobile-nav').on('click', function(e){
+        $(this).toggleClass('open');
+        $('#navigation-mobile').stop().slideToggle(350);
+        e.preventDefault();
+    });
+    $('#select2').select2('open');
+});
+
+</script>
+<script>
+//    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+//        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+//            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+//    })(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-50036192-4', 'tamadra.github.io'); ga('send', 'pageview');
+</script>
+</body>
 </html>
