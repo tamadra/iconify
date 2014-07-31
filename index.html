@@ -293,7 +293,7 @@ $(document).ready(function() {
         var ii = '<img src="img/m/'+ m.id +'.png" title="'+ m.n +'">';
         $('#results').append(ii);
         var comment = $('#cUrl').val();
-        comment += "[](/"+ m.id+' "'+ m.n+'")';
+        comment += "[\\[ "+ m.n+" \\] ](#/☎/"+ m.id+' "'+ m.n+'") ';
         $('#cUrl').val(comment);
     }
 
