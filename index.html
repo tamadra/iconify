@@ -146,9 +146,6 @@
                       </span>
                 </div>
             </div>
-            <div class="col-xs-12" style="text-align: center; font-size: smaller;">
-                (What's with the ☎ symbols?  They are used to designate icons as "mobile-friendly" so the CSS will display them properly)
-            </div>
             <div class="clearfix"></div>
         </div>
 
@@ -296,7 +293,7 @@ $(document).ready(function() {
         var ii = '<img src="img/m/'+ m.id +'.png" title="'+ m.n +'">';
         $('#results').append(ii);
         var comment = $('#cUrl').val();
-        comment += "[\\[ "+ m.n+" \\] ](#/☎/"+ m.id+' "'+ m.n+'") ';
+        comment += "[\\[ "+ m.n+" \\] ](#m/"+ m.id+' "'+ m.n+'") ';
         $('#cUrl').val(comment);
     }
 
